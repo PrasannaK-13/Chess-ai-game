@@ -33,7 +33,7 @@ A web-based chess game where a human player can play against an AI (powered by a
 Clone the repository to your local machine:
 
 (
-git clone https://github.com/yourusername/chess-ai-game.git
+[git clone https://github.com/yourusername/chess-ai-game.git] (https://github.com/PrasannaK-13/Chess-ai-game.git)
 )
 
 ### Step 2: Install Dependencies
