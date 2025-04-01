@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess AI Game</title>
+    <style>
+        body {
+            background: url('file:///C:/Users/hp/chessBlack.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Ensures everything is aligned properly */
+            gap: 10px;
+            width: 100%;
+        }
+        .input-group label {
+            font-weight: bold;
+        }
+        .dropdown-container {
+            display: flex;
+            align-items: center; /* Aligns the label and dropdown properly */
+            gap: 5px;
+        }
+        input, select, button {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        select, input {
+            flex: 1;
+        }
+        button {
+            background: gold;
+            cursor: pointer;
+            width: 48%;
+        }
+        button:hover {
+            background: orange;
+        }
+        .history {
+            background-color: #fff;
+            color: black;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Chess AI</h1>
+         <p>Enter your API Key (for selected LLM):</p>
+        <input type="text" id="apiKey" placeholder="Enter API Key">
+
+        <div class="input-group">
+            <div class="dropdown-container">
+                <label for="llmSelect">LLM:</label>
+                <select id="llmSelect">
+                    <option value="gemini">Google Gemini</option>
+                    <option value="openai">OpenAI GPT</option>
+                    <option value="cohere">Cohere</option>
+                </select>
+            </div>
+            <div class="dropdown-container">
+                <label for="difficultySelect">Difficulty:</label>
+                <select id="difficultySelect">
+                    <option value="easy">Easy</option>
+                    <option value="normal">Normal</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <button onclick="startGame()">Start Game</button>
+            <button onclick="resetGame()">Reset Game</button>
+        </div>
+
+        <div class="history">
+            <h3>Move History:</h3>
+            <ul id="moveHistory"></ul>
+        </div>
+    </div>
+
+    <script>
+        let moveHistory = [];
+
+        function startGame() {
+            const apiKey = document.getElementById("apiKey").value;
+            const selectedLLM = document.getElementById("llmSelect").value;
+            const difficulty = document.getElementById("difficultySelect").value;
+
+            if (apiKey) {
+                alert("Game starting with API key: " + apiKey);
+                alert("Selected LLM: " + selectedLLM + " with Difficulty: " + difficulty);
+            } else {
+                alert("Please enter a valid API key.");
+            }
+        }
+
+        function resetGame() {
+            alert("Game has been reset.");
+            moveHistory = [];
+            updateMoveHistory();
+        }
+
+        function updateMoveHistory() {
+            const historyElement = document.getElementById("moveHistory");
+            historyElement.innerHTML = '';
+            moveHistory.forEach(move => {
+                const listItem = document.createElement("li");
+                listItem.textContent = move;
+                historyElement.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
